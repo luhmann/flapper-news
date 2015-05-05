@@ -8,7 +8,7 @@ _fn.app.config([
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: '/javascripts/app/views/main/show.html',
+                templateUrl: '/javascripts/views/main/show.html',
                 controller: 'MainCtrl',
                 resolve: {
                     postPromise: ['posts', function(posts) {
@@ -18,7 +18,7 @@ _fn.app.config([
             })
             .state('posts', {
                 url: '/posts/{id}',
-                templateUrl: '/javascripts/app/views/posts/show.html',
+                templateUrl: '/javascripts/views/posts/show.html',
                 controller: 'PostsCtrl',
                 resolve: {
                     post: ['$stateParams', 'posts', function($stateParams, posts) {
@@ -28,7 +28,7 @@ _fn.app.config([
             })
             .state('login', {
                 url: '/login',
-                templateUrl: '/javascripts/app/views/auth/login.html',
+                templateUrl: '/javascripts/views/auth/login.html',
                 controller: 'AuthCtrl',
                 onEnter: ['$state', 'auth', function ($state, auth) {
                     if (auth.isLoggedIn()) {
@@ -38,7 +38,7 @@ _fn.app.config([
             })
             .state('register', {
                 url: '/register',
-                templateUrl: '/javascripts/app/views/auth/register.html',
+                templateUrl: '/javascripts/views/auth/register.html',
                 controller: 'AuthCtrl',
                 onEnter: ['$state', 'auth', function ($state, auth) {
                     if (auth.isLoggedIn()) {
