@@ -1,4 +1,4 @@
-_fn.app.controller('AuthCtrl', ['$scope', '$state', 'auth', function ($scope, $state, auth) {
+angular.module('flapperNews').controller('AuthCtrl', function ($scope, $state, auth) {
     $scope.user = {};
 
     $scope.register = function () {
@@ -16,4 +16,4 @@ _fn.app.controller('AuthCtrl', ['$scope', '$state', 'auth', function ($scope, $s
             $state.go('home');
         });
     };
-}]);
+});

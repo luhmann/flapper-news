@@ -1,4 +1,4 @@
-_fn.app.factory('posts', ['$http', 'auth', function ($http, auth) {
+angular.module('flapperNews').factory('posts', function ($http, auth) {
     var o = {
         posts: []
     };
@@ -49,4 +49,4 @@ _fn.app.factory('posts', ['$http', 'auth', function ($http, auth) {
     };
 
     return o;
-}]);
+});

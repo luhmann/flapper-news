@@ -1,8 +1,4 @@
-_fn.app.controller('MainCtrl', [
-    '$scope',
-    'auth',
-    'posts',
-    function($scope, auth, posts) {
+angular.module('flapperNews').controller('MainCtrl', function($scope, auth, posts) {
         $scope.posts = posts.posts;
         $scope.isLoggedIn = auth.isLoggedIn;
 
@@ -24,4 +20,4 @@ _fn.app.controller('MainCtrl', [
             posts.upvote(post);
         };
     }
-]);
+);
