@@ -1,0 +1,19 @@
+2015-05-06T19:47:36.547934000 0.006963s notice: Recursively removing directory /Users/jfd/Dev/flapper-news/rethinkdb_data/tmp
+2015-05-06T19:47:36.548876000 0.007908s notice: Initializing directory /Users/jfd/Dev/flapper-news/rethinkdb_data
+2015-05-06T19:47:36.548937000 0.007965s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/jfd/Dev/flapper-news/rethinkdb_data' did not already exist or is empty.)
+2015-05-06T19:47:36.548957000 0.007985s notice: Running rethinkdb 2.0.1 (CLANG 6.1.0 (clang-602.0.49))...
+2015-05-06T19:47:36.551966000 0.010994s notice: Running on Darwin 14.3.0 x86_64
+2015-05-06T19:47:36.551992000 0.011020s notice: Loading data from directory /Users/jfd/Dev/flapper-news/rethinkdb_data
+2015-05-06T19:47:37.096188000 0.555216s info: Automatically using cache size of 1724 MB
+2015-05-06T19:47:37.096700000 0.555728s notice: Listening for intracluster connections on port 29015
+2015-05-06T19:47:37.097446000 0.556474s notice: Listening for client driver connections on port 28015
+2015-05-06T19:47:37.097507000 0.556535s notice: Listening for administrative HTTP connections on port 8080
+2015-05-06T19:47:37.097512000 0.556540s notice: Listening on addresses: 127.0.0.1, ::1
+2015-05-06T19:47:37.097514000 0.556542s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-05-06T19:47:37.097517000 0.556545s notice: Server ready, "Corrigan_fritz_box_xxk" a308197f-6665-49a9-96c7-26900415d42d
+2015-05-06T20:38:22.297114000 3045.817088s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/226ccf21-27a6-4324-9975-e8ca913125d5
+2015-05-06T20:38:22.297297000 3045.817271s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/784ecf28-7462-4ccf-bf86-20afb724b726
+2015-05-06T20:38:22.297927000 3045.817901s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/8c0efe3c-8bb2-42f8-8d58-a8ab7e85fb86
+2015-05-06T20:39:48.019992000 3131.541704s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/1cca98cc-f833-4a4d-baa6-97bddada74fe
+2015-05-06T20:39:48.020213000 3131.541925s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/5b2b7640-1ec1-4047-b292-e680de12123c
+2015-05-06T20:39:48.020908000 3131.542620s notice: Removing file /Users/jfd/Dev/flapper-news/rethinkdb_data/90834f30-aa6d-4611-84fe-94b072a11949

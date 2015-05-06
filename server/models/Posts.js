@@ -1,16 +1,21 @@
-var mongoose = require('mongoose');
+var thinky = require('thinky')();
+var type = thinky.type;
+var CommentSchema = require('./Comments');
 
-var PostSchema = new mongoose.Schema({
-    title: String,
-    link: String,
-    author: String,
-    upvotes: { type: Number, default: 0},
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
+var PostSchema = thinky.createModel('Post', {
+    id: type.string(),
+    title: type.string(),
+    link: type.string(),
+    author: type.string(),
+    upvotes: type.number().default(0)
 });
 
-PostSchema.methods.upvote = function (cb) {
+PostSchema.hasMany(CommentSchema, 'comments', 'id', 'commentid');
+CommentSchema.belongsTo(PostSchema, 'post', 'postid', 'id');
+
+PostSchema.define('upvote', function (cb) {
     this.upvotes += 1;
     this.save(cb);
-};
+});
 
-mongoose.model('Post', PostSchema);
+module.exports = PostSchema;

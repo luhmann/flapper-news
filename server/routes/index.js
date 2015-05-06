@@ -4,52 +4,28 @@ var jwt = require('express-jwt');
 var router = express.Router();
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
-require('../models/Posts.js');
-require('../models/Comments.js');
-require('../models/Users.js');
-var mongoose = require('mongoose');
-var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comment');
-var User = mongoose.model('User');
+var Post = require('../models/Posts.js');
+var Comment = require('../models/Comments.js');
+var User = require('../models/Users.js');
 
 /**
  * Middleware for getting a post by its id
  */
 router.param('post', function (req, res, next, id) {
-    var query = Post.findById(id);
-
-    query.exec(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-
-        if (!post) {
-            return next(new Error("Can't find post"));
-        }
-
+    Post.get(req.body.id).run().then(function (post) {
         req.post = post;
         return next();
-    });
+    }).error(handleError(res));
 });
 
 /**
  * Middleware for getting a comment by its id
  */
 router.param('comment', function (req, res, next, id) {
-    var query = Comment.findById(id);
-
-    query.exec(function (err, comment) {
-        if (err) {
-            return next(err);
-        }
-
-        if (!comment) {
-            return next(err);
-        }
-
+    Comment.get(req.body.id).run().then(function (comment) {
         req.comment = comment;
         return next();
-    });
+    }).error(handleError(res));
 });
 
 /* GET home page. */
@@ -61,13 +37,9 @@ router.get(
 
 /* GET Posts Rest Response */
 router.get('/posts', function (req, res, next) {
-    Post.find(function (err, posts) {
-        if (err) {
-            return next(err);
-        }
-
-        res.json(posts);
-    });
+    Post.run().then(function (result) {
+        res.json(result);
+    }).error(handleError(res));
 });
 
 /* POST Save a post object */
@@ -75,24 +47,16 @@ router.post('/posts', auth, function(req, res, next) {
     var post = new Post(req.body);
     post.author = req.payload.username;
 
-    post.save(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-
+    post.save().then(function (post) {
         res.json(post);
-    });
+    }).error(handleError(res));
 });
 
 /* GET single post */
 router.get('/posts/:post', function (req, res) {
-    req.post.populate('comments', function (err, post) {
-        if (err) {
-            return next(err);
-        }
-
+    req.post.getJoin({ comments: true }).run().then(function (post) {
         res.json(post)
-    });
+    }).error(handleError(res));
 });
 
 /* PUT upvote a post */
@@ -147,10 +111,8 @@ router.post('/register', function (req, res, next) {
     user.username = req.body.username;
     user.setPassword(req.body.password);
 
-    user.save(function (err) {
-        if (err) {
-            return next(err);
-        }
+    user.save().then(function (result) {
+        console.log(result);
 
         return res.json({ token: user.generateJWT() });
     });
@@ -173,5 +135,11 @@ router.post('/login', function(req, res, next) {
         }
     })(req, res, next);
 });
+
+var handleError = function (res) {
+    return function(error) {
+        return res.send(500, {error: error.message});
+    }
+};
 
 module.exports = router;

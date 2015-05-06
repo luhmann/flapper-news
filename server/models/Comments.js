@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
+var thinky = require('thinky')();
+var type = thinky.type;
 
-var CommentSchema = new mongoose.Schema({
-    body: String,
-    author: String,
-    upvotes: { type: Number, default: 0 },
-    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+var CommentSchema = thinky.createModel('Comment', {
+    body: type.string(),
+    author: type.string(),
+    upvotes: type.number().default(0)
 });
 
-CommentSchema.methods.upvote = function (cb) {
+CommentSchema.define('upvote', function (cb) {
     this.upvotes += 1;
     this.save(cb);
-};
+});
 
-mongoose.model('Comment', CommentSchema);
+module.exports = CommentSchema;

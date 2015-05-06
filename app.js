@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./server/routes/index');
-
-var mongoose = require('mongoose');
 var passport = require('passport');
+var rethinkConfig = require('./server/config/rethink');
+var thinky = require('thinky')(rethinkConfig);
+var r = thinky.r;
 require('./server/models/Posts');
 require('./server/models/Comments');
 require('./server/models/Users');
 require('./server/config/passport');
-mongoose.connect('mongodb://localhost/news');
 
 var app = express();
 
