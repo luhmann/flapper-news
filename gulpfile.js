@@ -74,3 +74,5 @@ gulp.task('sass', function () {
 gulp.task('watch:sass', ['sass'], function () {
     gulp.watch(config.src.css, [ 'sass' ]);
 });
+
+gulp.task('build', ['views', 'sass', 'js']);

@@ -3,7 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+
+    "pretest": "npm install",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
@@ -21,6 +31,7 @@
   },
   "devDependencies": {
     "angular": "^1.3.15",
+    "angular-mocks": "^1.3.15",
     "angular-ui-router": "^0.2.14",
     "bootstrap": "^3.3.4",
     "gulp": "^3.8.11",
@@ -28,6 +39,11 @@
     "gulp-ng-annotate": "^0.5.3",
     "gulp-sass": "^1.3.3",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.3.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.8",
+    "karma-jasmine": "^0.3.5",
+    "protractor": "^2.0.0"
   }
 }
